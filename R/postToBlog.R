@@ -17,16 +17,23 @@ postToBlog <- function(file,
   type <- match.arg(type)
 
   ## Determine file name of .html output file
-  file.pieces <- str_split(file,'\\.')[[1]]
-  num.pieces <- length(file.pieces)
+  file.name <- basename(file)
+  dir.name <- dirname(file)
+
+  file.extension <- file_ext(file.name)
+
   # Should this be a stop()?
-  if(file.pieces[num.pieces]!='Rmd'){
+  if(file.extension!='Rmd'){
     warning("File extension is not .Rmd.  Check input file to make sure it is correct format.")
   }
-  file.root <- paste(file.pieces[-num.pieces],collapse='.')
-  html.file <- paste(file.root,'.html',sep='')
 
-  cat('RMarkdown file:', file,'\n')
+  file.root <- str_split(basename(file),pattern = paste('.',file.extension,sep=''))[[1]][1]
+  html.file <- paste(file.root,'.html',sep='')
+  current.director <- getwd()
+  setwd(dir.name)
+
+  cat('Directory:',dir.name,'\n')
+  cat('RMarkdown file:', file.name,'\n')
   cat('HTML file:', html.file,'\n')
   cat('Blog URL:', getOption('WordpressURL'),'\n')
   cat('Action Type:', type,'\n')
@@ -37,10 +44,11 @@ postToBlog <- function(file,
   #         WordpressURL='http://www.yourblog.com/xmlrpc.php')
 
   # Table of Contents
-  options(markdown.HTML.options =  c(markdownHTMLOptions(default = T),"toc"))
+  options(markdown.HTML.options =  c(markdownHTMLOptions(default = T),"toc","hard_wrap"))
+  # options(markdown.HTML.options =  c(markdownHTMLOptions(default = T),"number_sections"))
 
   # Knit an HTML file
-  knit2html(file)
+  knit2html(file.name)
 
   # If new category is used then create that category
   # Does not work
@@ -92,4 +100,5 @@ postToBlog <- function(file,
       )
     }
   }
+  setwd(current.director)
 }

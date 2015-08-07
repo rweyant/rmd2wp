@@ -178,9 +178,9 @@ postToBlog <- function(file,
 
 ```r
 # Create New Wordpress Post from file
-postToBlog('/path/to/file/posting-RMarkdown-to-Wordpress.Rmd',
-           title='Posting RMarkdown to a Wordpress Blog',
-           categories=c('R','packages'),
+postToBlog('/path/to/file/your-markdown-file.Rmd',
+           title='Your Awesome RMarkdown Post',
+           categories=c('R'),
            tags=c('R','rmd2wp'),
            syntax.highlighter = 'Syntax Highlighter Evolved',   # WP-Syntax and WP-CodeBox also supported, case-insensitive 
            type='new',

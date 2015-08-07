@@ -1,10 +1,3 @@
----
-html_document:
-  toc: true
-title: "Posting RMarkdown to a Wordpress Blog"
----
-
-
 
 # rmd2wp Package
 All the good versions of the name "Knit to Wordpress" were taken, so I've named the package unimaginatively *rmd2wp.*  The idea of this package is that you should be able to post your .Rmd files directly to your blog without having to mess with uploading any files, modifying any content/code afterwards, etc.  I found a couple attempts to do this ([knit2wp.com](https://wkmor1.wordpress.com/2012/07/01/rchievement-of-the-day-3-bloggin-from-r-14/) and [knit2wp](http://yihui.name/knitr/demo/wordpress/)), but neither worked out-of-the-box.

@@ -12,6 +12,7 @@ postToBlog <- function(file,
   library(knitr)
   library(markdown)
   library(stringr)
+  library(tools)
 
   # Determine what kind of action to take
   type <- match.arg(type)
@@ -44,7 +45,7 @@ postToBlog <- function(file,
   #         WordpressURL='http://www.yourblog.com/xmlrpc.php')
 
   # Table of Contents
-  options(markdown.HTML.options =  c(markdownHTMLOptions(default = T),"toc","hard_wrap"))
+  options(markdown.HTML.options =  c('use_xhtml','base64_images','mathjax','highlight_code',"toc","hard_wrap"))
   # options(markdown.HTML.options =  c(markdownHTMLOptions(default = T),"number_sections"))
 
   # Knit an HTML file
